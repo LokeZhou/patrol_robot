@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+
+import struct
+import rospy
+import serial
+import time
+import math
+
+from patrol_robot.msg import pc_to_stm
+from ctypes import *
+from std_msgs.msg import Int16,Int32,Int64,Float32,String,UInt64
+unlocking = 0
+front_left_wheel_speed_=0
+front_right_wheel_speed_=0
+back_left_wheel_speed_=0
+back_right_wheel_speed_=0
+def Update_Speed(pc_to_stm):
+	global unlocking 
+	global front_left_wheel_speed_
+	global front_right_wheel_speed_
+        global back_left_wheel_speed_
+        global back_right_wheel_speed_
+	front_left_wheel_speed_=pc_to_stm.front_lwheel_target_velocity
+	front_right_wheel_speed_=pc_to_stm.front_rwheel_target_velocity
+        back_left_wheel_speed_= pc_to_stm.back_lwheel_target_velocity
+        back_right_wheel_speed_=pc_to_stm.back_rwheel_target_velocity
+def listener():
+	ser = serial.Serial('/dev/ttyUSB0',115200,timeout=1)
+	motor_speed = rospy.Subscriber('motor',pc_to_stm,Update_Speed)
+	global unlocking
+	rospy.init_node('listener',anonymous=True)
+	r=rospy.Rate(50)
+	while not rospy.is_shutdown():
+			ser.write('A')
+			ser.write('C')
+			ser.write(struct.pack('<h',front_left_wheel_speed_))
+			ser.write(struct.pack('<h',front_right_wheel_speed_))
+                        ser.write(struct.pack('<h',back_left_wheel_speed_))
+                        ser.write(struct.pack('<h',back_right_wheel_speed_))
+		
+		        r.sleep()
+if __name__=='__main__':
+		listener()
+

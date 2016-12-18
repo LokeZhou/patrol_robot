@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "patrol_robot")
+set(patrol_robot_MAINTAINER "exbot <exbot@todo.todo>")
+set(patrol_robot_DEPRECATED "")
+set(patrol_robot_VERSION "0.0.0")
+set(patrol_robot_BUILD_DEPENDS "roscpp" "rospy" "message_generation" "urdf" "tf" "std_msg" "sensor_msgs" "geometry_msgs" "diagnostic_msgs")
+set(patrol_robot_RUN_DEPENDS "urdf" "tf" "joint_state_publisher" "pr2_description" "robot_state_publisher" "rviz" "xacro" "message_runtime" "roscpp" "rospy" "std_msg" "sensor_msgs" "geometry_msgs" "diagnostic_msgs")
+set(patrol_robot_BUILDTOOL_DEPENDS "catkin")

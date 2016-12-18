@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "openslam_gmapping")
+set(openslam_gmapping_MAINTAINER "Vincent Rabaud <vincent.rabaud@gmail.com>")
+set(openslam_gmapping_DEPRECATED "")
+set(openslam_gmapping_VERSION "0.1.2")
+set(openslam_gmapping_BUILD_DEPENDS )
+set(openslam_gmapping_RUN_DEPENDS )
+set(openslam_gmapping_BUILDTOOL_DEPENDS "catkin")

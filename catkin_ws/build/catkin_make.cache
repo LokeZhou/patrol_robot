@@ -1,0 +1,2 @@
+ethzasl_xsens_driver:lms1xx:openslam_gmapping:patrol_robot:slam_gmapping/gmapping:slam_gmapping/slam_gmapping
+-DCATKIN_DEVEL_PREFIX=/home/exbot/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/exbot/catkin_ws/install -G Unix Makefiles

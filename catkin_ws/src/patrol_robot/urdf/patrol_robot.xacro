@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"
+		xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+    	xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+    	xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+  name="patrol_robot">
+		
+	<xacro:macro name="default_inertial" params="mass">
+       <inertial>
+               <mass value="${mass}" />
+               <inertia ixx="1.0" ixy="0.0" ixz="0.0"
+                        iyy="1.0" iyz="0.0"
+                        izz="1.0" />
+       </inertial>
+	</xacro:macro>
+	<link name="base_footprint">
+   		<visual>
+			<geometry>
+      				<box size="0.850 0.640 0.290"/>
+     		</geometry>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+   		</visual>
+		<xacro:default_inertial mass="0.0001"/>
+ 	</link>
+
+	<joint name="base_footprint_joint" type="fixed">
+<!--		<origin xyz="0 0 0.019" />    -->
+		<origin xyz="0 0 0" />
+		<parent link="base_footprint" />
+		<child link="base_link" />
+	</joint>
+
+
+
+	<link
+		name="base_link">
+	</link>
+ 
+        
+              <link name="tyer_front_left">  
+                <visual>  
+                  <geometry>  
+                    <cylinder length=".0722" radius="0.101"></cylinder>  
+                  </geometry>  
+                <material name="yellow">  
+                <color rgba="1 1 0 1"/>  
+                </material>    
+                  </visual>  
+         </link>  
+      
+              <link name="tyer_front_right">  
+                <visual>  
+                  <geometry>  
+                    <cylinder length=".0722" radius="0.101"></cylinder>  
+                  </geometry>  
+                <material name="yellow">    
+                  <color rgba="1 1 0 1"/>    
+                </material>    
+                </visual>  
+         </link>  
+        
+              <link name="tyer_back_left">  
+                <visual>  
+                  <geometry>  
+                    <cylinder length=".0722" radius="0.101"></cylinder>  
+                  </geometry>  
+                <material name="yellow">    
+                  <color rgba="1 1 0 1"/>    
+                </material>    
+                </visual>  
+         </link>  
+        
+              <link name="tyer_back_right">  
+                <visual>  
+                  <geometry>  
+                    <cylinder length=".0722" radius="0.101"></cylinder>  
+                  </geometry>  
+                <material name="yellow">    
+                    <color rgba="1 1 0 1"/>    
+                </material>    
+                </visual>  
+         </link> 
+         <joint name="base_to_front_left" type="continuous">  
+         <origin rpy="1.57075  0  0" xyz="0.275  0.275  -0.0945"/>  
+         <parent link="base_link"/>  
+         <child link="tyer_front_left"/>      
+         <axis xyz="0 0 1"/>  
+         </joint>  
+      
+         <joint name="base_to_front_right" type="continuous">  
+         <origin rpy="1.57075  0  0" xyz="0.275  -0.275  -0.0945"/>  
+         <parent link="base_link"/>  
+         <child link="tyer_front_right"/>      
+         <axis xyz="0 0 1"/>  
+         </joint>  
+      
+         <joint name="base_to_back_left" type="continuous">  
+         <origin rpy="1.57075  0  0" xyz="-0.275  0.275  -0.0945"/>  
+         <parent link="base_link"/>  
+         <child link="tyer_back_left"/>      
+         <axis xyz="0 0 1"/>  
+         </joint>  
+      
+         <joint name="base_to_back_right" type="continuous">  
+         <origin rpy="1.57075  0  0" xyz="-0.275  -0.275  -0.0945"/>  
+         <parent link="base_link"/>  
+         <child link="tyer_back_right"/>      
+         <axis xyz="0 0 1"/>  
+         </joint>  
+	 <link
+              name="sick_link">
+         <inertial>
+           <origin
+               xyz="0 0 0"
+               rpy="0 0 0" />
+           <mass
+               value="101" />
+		<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />    
+	</inertial>
+          <visual>  
+                  <geometry>    
+		    <mesh
+		      filename="package://lms1xx/meshes/sick-lms1xx.stl" />
+		  </geometry>
+                </visual>  
+         </link>
+           <joint name="sick_joint" type="fixed">
+	   <origin xyz="0.38085 0 0.131" rpy="0 0 0"/>
+	   <parent link="base_link"/>
+	   <child link="sick_link"/>
+	</joint> 
+        
+      
+</robot>

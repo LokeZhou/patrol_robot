@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+<!--<include file="$(find patrol_robot)/launch/display.launch" />  --> 
+<node name="stm_to_pc_unpack" pkg="patrol_robot" type="stm_to_pc_unpack.py" output="screen" respawn = "true"/>
+<include file="$(find patrol_robot)/launch/xsens_driver.launch" />-->
+<!--<node name="hand_buff_unpack" pkg="patrol_robot" type="hand_buff_unpack.py" output="screen" respawn = "true"/>-->
+<!--<node name="twist_to_motor" pkg="patrol_robot" type="twist_to_motor" output="screen"/> -->
+<node name="send_odom" pkg="patrol_robot" type="send_odom" output="screen"/>-->
+<node name="send_serial" pkg="patrol_robot" type="serialpack.py" output="screen" respawn = "true"/>  -->
+<!--<include file="$(find patrol_robot)/launch/patrol_robot_gmapping.launch" /> --> 
+</launch>
